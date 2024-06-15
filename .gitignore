@@ -1,0 +1,54 @@
+# Node.js
+node_modules/
+npm-debug.log*
+package-lock.json
+yarn-debug.log*
+yarn-error.log*
+
+# Next.js
+.next/
+out/
+build/
+
+# IntelliJ IDEA / WebStorm
+.idea/
+*.iml
+
+# Editor directories and files
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# macOS
+.DS_Store
+
+# Log files
+logs/
+*.log
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Yarn v2
+.yarn/*
+.pnp.*
+
+# Static Files
+/static/media
+
+# testing
+/coverage
+
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env*.local
+
+# vercel
+.vercel
+
