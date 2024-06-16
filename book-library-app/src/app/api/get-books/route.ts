@@ -5,6 +5,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     try {
         const response = await fetch('http://localhost:3000/api/v1/books', {
             method: 'GET',
+            cache: "no-cache",
             headers: {
                 'Content-Type': 'application/json',
             },
