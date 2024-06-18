@@ -19,7 +19,8 @@ const BookList = ({ bookList }: BookListProps) => {
                     </tr>
                 </thead>
                 <tbody className="text-gray-700">
-                {bookList?.map((book, index) => (
+
+                {bookList && bookList?.map((book, index) => (
                     <tr key={book.id} className="hover:bg-gray-100">
                         <td className="px-6 py-4 whitespace-nowrap">
                             <div className="text-sm font-medium text-gray-900">{book.title}</div>
@@ -29,6 +30,11 @@ const BookList = ({ bookList }: BookListProps) => {
                         </td>
                     </tr>
                 ))}
+                {!bookList &&
+                    <tr>
+                        <td className="px-6 py-4 text-center text-gray-500">No data available</td>
+                    </tr>
+                }
                 </tbody>
             </table>
         </div>

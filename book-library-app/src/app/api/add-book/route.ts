@@ -2,7 +2,7 @@ import {NextRequest, NextResponse} from "next/server";
 import {z} from "zod";
 
 const schema = z.object({
-    title : z.string().min(1,'Title cannot be empty'),
+    title : z.string().min(2,'Title cannot be empty'),
     author : z.string().min(1,'Author cannot be empty'),
 });
 
@@ -17,10 +17,10 @@ export async function POST(req:NextRequest):Promise<NextResponse>{
             return NextResponse.json({
                 success: false,
                 message: "Failed to add book! Please try again"
-            });
+            },{status:400});
         }
         const data  = parse.data;
-        const response = await fetch('http://localhost:3000/api/v1/books', {
+        const response = await fetch('http://localhost:3001/api/v1/books', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

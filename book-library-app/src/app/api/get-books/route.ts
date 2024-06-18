@@ -3,7 +3,7 @@ import {Book} from "@/types/book";
 
 export async function GET(req: NextRequest): Promise<NextResponse> {
     try {
-        const response = await fetch('http://localhost:3000/api/v1/books', {
+        const response = await fetch('http://localhost:3001/api/v1/books', {
             method: 'GET',
             cache: "no-cache",
             headers: {
