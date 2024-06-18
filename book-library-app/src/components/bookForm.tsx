@@ -42,6 +42,7 @@ const AddBook = ({handleSubmit,isLoading}:AddBookProps) =>{
         <>
             <form className="flex flex-col w-full p-6 bg-gray-50 rounded-lg shadow-lg">
                 <div className="space-y-6">
+                    <div className="font-bold text-3xl font-serif">Book Details</div>
                     <div className="flex flex-col items-left space-y-2">
                         <label htmlFor="title" className="w-1/4 text-left font-medium text-gray-700">
                             Title
