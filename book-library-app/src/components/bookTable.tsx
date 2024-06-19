@@ -71,20 +71,18 @@ const BookList = ({ bookList}: BookListProps) => {
                             onClick={() => handleSort('title')}
                         >
                             <div className="flex gap-2">Title {getSortIcon('title')}</div>
-
                         </th>
                         <th
                             className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider"
                             onClick={() => handleSort('author')}
                         >
                             <div className="flex gap-2">Author {getSortIcon('author')}</div>
-
                         </th>
                     </tr>
                 </thead>
                 <tbody className="text-gray-700">
                 {currentBooks.length >0  ? currentBooks?.map((book, index) => (
-                    <tr key={book.id} className="hover:bg-gray-100">
+                    <tr key={index} className="hover:bg-gray-100">
                         <td className="px-6 py-4 whitespace-nowrap w-1/2">
                             <div className="text-md font-medium text-gray-900">{book.title}</div>
                         </td>

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Book } from "@/types/book";
 import BookForm from "@/components/bookForm";
 import BookTable from "@/components/bookTable";
+import Layout from "@/components/layout";
 
 
 const HomePage = () => {
@@ -58,21 +59,17 @@ const HomePage = () => {
     }, []);
 
     return (
-        <div className="min-h-screen flex justify-center bg-gradient-to-r from-green-100 to-blue-400 p-6">
-            <div className="container flex flex-col gap-4">
-                <div className="p-4 text-lime-700 font-bold text-4xl font-serif">
-                    Book Library
-                </div>
-                <div className="flex justify-center w-full">
-                    <BookForm handleSubmit={handleSaveBook}
-                              isLoading={isLoading}
-                              isSubmitted={isSubmitted}
-                              clearForm={handleFormClear}
-                    />
-                </div>
-                <BookTable bookList={bookList} />
+        <Layout>
+            <div className="flex justify-center w-full pb-6">
+                <BookForm handleSubmit={handleSaveBook}
+                          isLoading={isLoading}
+                          isSubmitted={isSubmitted}
+                          clearForm={handleFormClear}
+                />
             </div>
-        </div>
+            <BookTable bookList={bookList} />
+        </Layout>
+
     );
 };
 
