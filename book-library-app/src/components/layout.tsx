@@ -8,10 +8,10 @@ interface LayoutProps {
 
 const Layout = ({ children }:LayoutProps) => {
     return (
-        <div className="min-h-screen flex justify-center bg-gradient-to-r from-green-100 to-blue-400 ">
-            <div className="container flex flex-col gap-4">
+        <div className="min-h-screen  bg-gradient-to-r from-green-100 to-blue-400 ">
+            <div className="w-full flex flex-col gap-4">
                 <Header />
-                <main className="flex-grow p-4">
+                <main className="container flex-grow justify-center m-auto px-10 py-4">
                     {children}
                 </main>
                 <Footer />

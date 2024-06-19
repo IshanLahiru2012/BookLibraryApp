@@ -1,9 +1,10 @@
-import {NextRequest, NextResponse} from "next/server";
+import {NextResponse} from "next/server";
 import {Book} from "@/types/book";
 
-export async function GET(req: NextRequest): Promise<NextResponse> {
+export async function GET(): Promise<NextResponse> {
+    const API_BASE_URL = process.env.API_BASE_URL;
     try {
-        const response = await fetch('http://localhost:3001/api/v1/books', {
+        const response = await fetch(`${API_BASE_URL}/api/v1/books`, {
             method: 'GET',
             cache: "no-cache",
             headers: {

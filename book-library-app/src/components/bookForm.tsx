@@ -1,6 +1,6 @@
 "use client"
 
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Book} from "@/types/book";
 
 interface AddBookProps {
@@ -53,11 +53,11 @@ const AddBook = ({handleSubmit,isLoading, isSubmitted,clearForm}:AddBookProps) =
             setBookFormData(initialBookForm);
             clearForm();
         }
-    },[isSubmitted])
+    },[isSubmitted,clearForm])
 
     return(
         <>
-            <form className="flex flex-col w-full p-6 bg-gray-50 rounded-lg shadow-lg">
+            <form className="flex flex-col w-full p-6 bg-gray-200 rounded-lg shadow-lg">
                 <div className="space-y-6">
                     <div className="font-bold text-3xl font-serif">Book Details</div>
                     <div className="flex flex-col items-left space-y-2">

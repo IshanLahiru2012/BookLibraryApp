@@ -7,6 +7,7 @@ const schema = z.object({
 });
 
 export async function POST(req:NextRequest):Promise<NextResponse>{
+    const API_BASE_URL = process.env.API_BASE_URL;
     try {
         console.log(req)
         const extractedBookData = await req.json();
@@ -20,7 +21,7 @@ export async function POST(req:NextRequest):Promise<NextResponse>{
             },{status:400});
         }
         const data  = parse.data;
-        const response = await fetch('http://localhost:3001/api/v1/books', {
+        const response = await fetch(`${API_BASE_URL}/api/v1/books`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

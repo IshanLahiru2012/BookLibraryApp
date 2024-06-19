@@ -67,7 +67,7 @@ const BookList = ({ bookList}: BookListProps) => {
                 <thead className="bg-gray-800 text-white">
                     <tr>
                         <th
-                            className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider"
+                            className="px-6 py-4 text-left text-sm font-medium uppercase tracking-wider"
                             onClick={() => handleSort('title')}
                         >
                             <div className="flex gap-2">Title {getSortIcon('title')}</div>
@@ -98,7 +98,7 @@ const BookList = ({ bookList}: BookListProps) => {
                 </tbody>
             </table>
             { currentBooks.length>0 &&
-                <div className="flex justify-center items-center px-6 py-4 gap-4 bg-cyan-200">
+                <div className="flex justify-center items-center px-6 py-2 gap-4 bg-cyan-100">
                 <button
                     className={`px-3 py-1 bg-gray-300 rounded ${currentPage === 1 ? '' : 'hover:bg-gray-200'}`}
                     onClick={() => handlePreviousPage()}

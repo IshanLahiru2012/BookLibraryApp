@@ -6,7 +6,7 @@ import BookTable from "@/components/bookTable";
 import Layout from "@/components/layout";
 
 
-const HomePage = () => {
+const Home = () => {
     const [bookList, setBookList] = useState<Book[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isSubmitted, setIsSubmitted] =useState(false)
@@ -14,12 +14,14 @@ const HomePage = () => {
     const handleFormClear = ()=>{
         setIsSubmitted(false);
     }
-    const loadBooks = async () => {
+    const loadBooks = async ():Promise<Book[]> => {
         try {
-            const apiResponse = await fetch("/api/get-books");
+            const apiResponse = await fetch("/api/get-books",{
+                method: "GET"
+            });
             if(!apiResponse.ok){
                 console.log("unable to get books")
-                throw new Error("Unable to get book");
+                alert("Failed to fetch books");
             }
             const result = await apiResponse.json();
             const booksList = result?.data || [];
@@ -27,7 +29,9 @@ const HomePage = () => {
             return booksList;
         } catch (error) {
             console.error("Failed to fetch books:", error);
+            alert("Failed to fetch books");
         }
+        return [];
     };
 
     const handleSaveBook = async (book: Book) => {
@@ -41,36 +45,44 @@ const HomePage = () => {
                 }
             });
             if(!apiResponse.ok){
-                console.log("unable to save book")
-                throw new Error("Unable to save book");
+                console.log("unable to save book");
+                alert("Failed to save book");
+                return;
             }
             const updatedBooks = await loadBooks();
             setBookList(updatedBooks);
             setIsSubmitted(true);
+            alert("SuccessFully book added");
         } catch (error) {
             console.error("Failed to save book:", error);
+            alert("Failed to save book");
+            throw new Error("Unable to save book");
         } finally {
             setIsLoading(false);
         }
     };
 
     useEffect(() => {
-        loadBooks();
+        const fetchData = async () => {
+            await loadBooks();
+        };
+        fetchData().catch(error => console.error('Failed to fetch data:', error));
     }, []);
 
     return (
         <Layout>
-            <div className="flex justify-center w-full pb-6">
+            <div className="flex flex-col gap-8">
                 <BookForm handleSubmit={handleSaveBook}
                           isLoading={isLoading}
                           isSubmitted={isSubmitted}
                           clearForm={handleFormClear}
                 />
+                <BookTable bookList={bookList} />
             </div>
-            <BookTable bookList={bookList} />
+
         </Layout>
 
     );
 };
 
-export default HomePage;
+export default Home;
