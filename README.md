@@ -37,6 +37,10 @@ This is a Next.js application designed to assignment purposs
 Create a `.env` file in the root directory and add the following environment variables: 
 API_BASE_URL=https://api.example.com (use Mock API - https://mockoon.com/)
 
+## Getting Started
+
+First, run the development server:
+
 ```bash
 npm run dev
 # or
