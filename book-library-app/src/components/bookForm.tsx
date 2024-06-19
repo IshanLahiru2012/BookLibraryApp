@@ -1,17 +1,19 @@
 "use client"
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Book} from "@/types/book";
 
 interface AddBookProps {
     handleSubmit: (book : Book)=> void;
     isLoading : boolean;
+    isSubmitted: boolean;
+    clearForm: ()=> void;
 }
 const initialBookForm ={title:"",author:""};
 const initialValidationErrors = { title: '', author: '' };
 
 
-const AddBook = ({handleSubmit,isLoading}:AddBookProps) =>{
+const AddBook = ({handleSubmit,isLoading, isSubmitted,clearForm}:AddBookProps) =>{
 
     const [bookFormData, setBookFormData] =useState(initialBookForm);
     const [validationErrors, setValidationErrors] = useState(initialValidationErrors);
@@ -38,16 +40,20 @@ const AddBook = ({handleSubmit,isLoading}:AddBookProps) =>{
             errors.author = "Author is required.";
             isValid = false;
         }
-
         setValidationErrors(errors);
         return isValid;
     };
     const onSubmit = ()=>{
-        if (validateForm()) {
+        if (validateForm() && !isLoading) {
             handleSubmit(bookFormData);
         }
     }
-
+    useEffect(()=>{
+        if(isSubmitted){
+            setBookFormData(initialBookForm);
+            clearForm();
+        }
+    },[isSubmitted])
 
     return(
         <>
@@ -62,7 +68,6 @@ const AddBook = ({handleSubmit,isLoading}:AddBookProps) =>{
                             name="title"
                             placeholder="Enter Book title"
                             value={bookFormData.title}
-                            required
                             onChange={handleChange}
                             id="title"
                             className="p-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -79,7 +84,6 @@ const AddBook = ({handleSubmit,isLoading}:AddBookProps) =>{
                             name="author"
                             placeholder="Enter Book Author"
                             value={bookFormData.author}
-                            required
                             onChange={handleChange}
                             id="author"
                             className=" p-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
