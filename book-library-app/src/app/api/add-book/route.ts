@@ -12,7 +12,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     const API_BASE_URL = process.env.API_BASE_URL;  // Retrieving the API base URL from environment variables
 
     try {
-        console.log(req);  // Logging the request for debugging purposes
         const extractedBookData = await req.json();  // Extracting the JSON data from the request body
 
         // Validating the extracted data against the defined schema
@@ -39,13 +38,14 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         });
 
         const createdBook = await response.json();  // Extracting the JSON response from the external API
-
+        console.log(response);
+        console.log(createdBook)
         // If the response from the external API is not OK, return an error response with the appropriate message
         if (!response.ok) {
             return NextResponse.json({
                 success: false,
                 message: createdBook.message || "Something went wrong! Please try again",
-            }, { status: 500 });
+            }, { status: 501 });
         }
 
         // Returning a success response with the created book data and status 201
@@ -62,6 +62,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         return NextResponse.json({
             success: false,
             message: "Something went wrong! Please try again"
-        });
+        },{ status: 500 });
     }
 }
